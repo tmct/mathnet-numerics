@@ -142,9 +142,9 @@ namespace MathNet.Numerics.Optimization
             var candidatePoint = lineSearchResult.FunctionInfoAtMinimum;
 
             // Check that we're not done
-            currentExitCondition = ExitCriteriaSatisfied(candidatePoint, null, 0);
+            currentExitCondition = ExitCriteriaSatisfied(candidatePoint, previousPoint, 0);
             if (currentExitCondition != ExitCondition.None)
-                return new MinimizationResult(objective, 0, currentExitCondition);
+                return new MinimizationResult(candidatePoint, 0, currentExitCondition);
 
             var gradient = candidatePoint.Gradient;
             var step = candidatePoint.Point - initialGuess;
